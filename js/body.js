@@ -1,14 +1,18 @@
+var App = require('./components/app.js');
+var PassForm = require('./components/passform.js');
+
 var Body = React.createClass({
 	render: function(){
 		return (
-			<div id="wrapper"></div>
+			<div id="wrapper">
+				<App />
+				<PassForm />
+			</div>
 		)
 	}
 });
 
-function initialize() {
-	React.render(
-		<Body />,
-		document.getElementById('map')
-	);
-}
+React.render(
+	<Body />,
+	document.getElementById('mount')
+);
