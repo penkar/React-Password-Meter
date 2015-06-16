@@ -10,20 +10,32 @@ var VariableStore = module.exports = Reflux.createStore({
 	},
 	onLengths: function(value){
 		var variable = this.variable;
-		variable.length = parseInt(value);
+		variable.lengths = parseInt(value);
 		this.variable = variable;
 		this.trigger(this.variable)
 	},
-	onLetters: function(){
-		console.log('onLetters');
+	onLetters: function(value){
+		var variable = this.variable;
+		variable.letters = parseInt(value);
+		this.variable = variable;
+		this.trigger(this.variable)	
 	},
-	onNumbers: function(){
-		console.log('onNumbers');
+	onNumbers: function(value){
+		var variable = this.variable;
+		variable.numbers = parseInt(value);
+		this.variable = variable;
+		this.trigger(this.variable)	
 	},
-	onSpecialChar: function(){
-		console.log('onSpecialChar');
+	onSpecialChar: function(value){
+		var variable = this.variable;
+		variable.specials = parseInt(value);
+		this.variable = variable;
+		this.trigger(this.variable)	
 	},
-	onCapLetters: function(){
-		console.log('onCapLetters');
+	onCapLetters: function(value){
+		var variable = this.variable;
+		variable.capitals = parseInt(value);
+		this.variable = variable;
+		this.trigger(this.variable)	
 	}
 });
