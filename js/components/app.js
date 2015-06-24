@@ -36,21 +36,18 @@ var App = module.exports = React.createClass({
   			errors.push(<li>Password does not contain enough numbers.</li>)
   		}
   		
-      // var specials = variable.specials || '';
-      // for(var j = 0; j < specials.length; j++){
-      //   var r = new RegExp(specials[j]);
-      //   console.log(password.search(r));
-      //   if(!password.search(r)){
-      //     errors.push(<li>Password is missing a {specials[j]}.</li>)
-      //   }
-      // }
+      var specials = variable.specials || '';
+      for(var j = 0; j < specials.length; j++){
+        var r = new RegExp(specials[j]);
+        console.log(password.search(r));
+        if(password.search(r)=== -1){
+          errors.push(<li>Password is missing a {specials[j]}.</li>)
+        }
+      }
   		if(password.match(/[a-zA-Z]/g).length < variable.capitals){
   			errors.push(<li>Password does not have enough capital letters.</li>)
   		}
     }
-		// for(var i in variable){
-		// 	array.push(<div>{i}-=-{variable[i]}</div>);
-		// }
 		return(
 			<div>
 				<input id="password" value={variable.length} onChange={this.change} onKeyDown={this.press}/>
