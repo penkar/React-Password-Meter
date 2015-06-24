@@ -28,7 +28,7 @@ var VariableStore = module.exports = Reflux.createStore({
 	},
 	onSpecialChar: function(value){
 		var variable = this.variable;
-		variable.specials = parseInt(value);
+		variable.specials = value;
 		this.variable = variable;
 		this.trigger(this.variable)	
 	},

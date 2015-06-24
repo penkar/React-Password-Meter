@@ -26,17 +26,24 @@ var App = module.exports = React.createClass({
     var password = this.state.password;
     if(password){
       if(password.length < variable.lengths){
-  			errors.push(<li>Password is not long enough.</li>)
+  			errors.push(<li>Password is not long enough.</li>);
   		}
   		if(password.match(/[a-zA-Z]/g).length < variable.letters){
   			errors.push(<li>Password does not contain enough Letters.</li>)
   		}
-  		if(password.match(/\d/g).length < variable.numbers){
+      var numMatch = password.match(/\d/g) || [];
+  		if(numMatch.length < (variable.numbers || 0 )){
   			errors.push(<li>Password does not contain enough numbers.</li>)
   		}
-  		// if(password.length < variable.lengths){
-  		// 	errors.push(<li>Password is not long enough.</li>)
-  		// }
+  		
+      // var specials = variable.specials || '';
+      // for(var j = 0; j < specials.length; j++){
+      //   var r = new RegExp(specials[j]);
+      //   console.log(password.search(r));
+      //   if(!password.search(r)){
+      //     errors.push(<li>Password is missing a {specials[j]}.</li>)
+      //   }
+      // }
   		if(password.match(/[a-zA-Z]/g).length < variable.capitals){
   			errors.push(<li>Password does not have enough capital letters.</li>)
   		}
