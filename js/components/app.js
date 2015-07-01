@@ -48,11 +48,11 @@ var App = module.exports = React.createClass({
   		}
     }
 		return(
-			<div>
-				<input id="password" value={variable.length} onChange={this.change} onKeyDown={this.press}/>
-				<ul>
+			<div className="main">
+				<ul className="error">
 					{errors}
 				</ul>
+        <input id="password" value={variable.length} onChange={this.change} onKeyDown={this.press}/>
 			</div>
 		)
 	}
