@@ -1,3 +1,18 @@
 body{
-	margin: 20px 20px 20px 20px;
+	margin: 0px;
+}
+
+#header{
+	position:relative;
+	width: 100%;
+	padding:20px 0px;
+	text-align: center;
+}
+
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
 }
