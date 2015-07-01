@@ -22,7 +22,7 @@ var App = module.exports = React.createClass({
 		})
 	},
 	render: function(){
-		var variable = this.state.variable, array=[], errors = [];
+		var variable = this.state.variable, errors = [];
     var password = this.state.password;
     if(password){
       if(password.length < variable.lengths){
@@ -39,7 +39,6 @@ var App = module.exports = React.createClass({
       var specials = variable.specials || '';
       for(var j = 0; j < specials.length; j++){
         var r = new RegExp(specials[j]);
-        console.log(password.search(r));
         if(password.search(r)=== -1){
           errors.push(<li>Password is missing a {specials[j]}.</li>)
         }
@@ -51,7 +50,6 @@ var App = module.exports = React.createClass({
 		return(
 			<div>
 				<input id="password" value={variable.length} onChange={this.change} onKeyDown={this.press}/>
-				{array}
 				<ul>
 					{errors}
 				</ul>
