@@ -1,31 +1,35 @@
 'use strict';
-var actions = require('../store/actions.js');
+import React from 'react';
+import Actions from '../store/actions.js';
+// import VariableRow from './form/variables.js';
 
-var PassForm = module.exports = React.createClass({
-	getInitialState: function(){
-		return ({
+class PassForm extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {
 			lengths: false,
 			letters: false,
 			specialChar: false,
 			numbers: false,
 			capLetters: false
-		});
-	},
-	change: function(e){
+		}
+	}
+	change(e) {
 		var num = e.target.value, id = e.target.id, state = this.state;
 		state[id] = num
 		if(parseInt(num)){
-			actions[id](num);
+			Actions[id](num);
 			this.setState(state);
 		} else {
 			this.setState(state);
 		}
-	},
-	change2: function(e){
-		actions[e.target.id](e.target.value);
-	},
-	render: function(){
-		var errors = [], state = this.state;
+	}
+	change2(e) {
+		Actions[e.target.id](e.target.value);
+	}
+	render() {
+		var errors = [];
+		var state = this.state;
 		for(var i in state){
 			var disp = state[i];
 			if(disp){
@@ -68,4 +72,6 @@ var PassForm = module.exports = React.createClass({
 		</div>
 		)
 	}
-})
+}
+
+export default PassForm;

@@ -1,29 +1,31 @@
 'use strict';
-var VariableStore = require('../store/variablestore.js');
-var Reflux = require('reflux');
+// var VariableStore = require('../store/variablestore.js');
+import Reflux from 'reflux';
+import React from 'react';
 
-var App = module.exports = React.createClass({
-	mixins: [Reflux.connect(VariableStore, 'variable')],
-	getInitialState: function(){
-		return ({
-			password: ''
-		})
-	},
-	press: function(e){
+// mixins: [Reflux.connect(VariableStore, 'variable')],
+class App extends React.Component{
+	constructor(props){
+		super(props)
+		this.state = {password:''}
+	}
+	press(e) {
 		e = e || window.event;
 		if (e.keyCode == 27) {
 		alert("Escape");
 		}
-	},
-	change: function(e){
+	}
+	change(e) {
 		var newpass = e.target.value;
 		this.setState({
 			password: newpass
 		})
-	},
-	render: function(){
-		var variable = this.state.variable, errors = [];
-    var password = this.state.password;
+	}
+	render() {
+		var variable = this.state.variable || {};
+		var errors = [];
+    var password = this.state.password || '';
+		
     if(password){
       if(password.length < variable.lengths){
   			errors.push(<li>Password is not long enough.</li>);
@@ -35,7 +37,7 @@ var App = module.exports = React.createClass({
   		if(numMatch.length < (variable.numbers || 0 )){
   			errors.push(<li>Password does not contain enough numbers.</li>)
   		}
-  		
+
       var specials = variable.specials || '';
       for(var j = 0; j < specials.length; j++){
         var r = new RegExp(specials[j]);
@@ -56,4 +58,6 @@ var App = module.exports = React.createClass({
 			</div>
 		)
 	}
-})
+}
+
+export default App;

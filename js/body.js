@@ -1,10 +1,16 @@
-var App = require('./components/app.js');
-var PassForm = require('./components/passform.js');
-var Header = require('./components/header.js');
+'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/app.js';
+import PassForm from './components/passform.js';
+import Header from './components/header.js';
 
 
-var Body = React.createClass({
-	render: function(){
+class Body extends React.Component{
+	constructor(props) {
+    super(props);
+  }
+	render() {
 		return (
 			<div id="wrapper">
 				<Header />
@@ -13,9 +19,9 @@ var Body = React.createClass({
 			</div>
 		)
 	}
-});
+}
 
-React.render(
+ReactDOM.render(
 	<Body />,
 	document.getElementById('mount')
 );

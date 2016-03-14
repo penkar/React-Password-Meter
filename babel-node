@@ -1,0 +1,1 @@
+console.error("Error: Parsing file /home/jsp/Documents/code/portfolio/React-Password-Meter/js/components/passform.js: 'import' and 'export' may appear only with 'sourceType: module' (3:0)");
