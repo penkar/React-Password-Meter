@@ -7,7 +7,16 @@ import React from 'react';
 class App extends React.Component{
 	constructor(props){
 		super(props)
-		this.state = {password:''}
+		this.state = {
+			password:'',
+			variable: {
+				lengths: 0,
+				letters: 0,
+				numbers: 0,
+				specials: 0,
+				capitals: 0
+			}
+		}
 	}
 	press(e) {
 		e = e || window.event;
@@ -22,10 +31,10 @@ class App extends React.Component{
 		})
 	}
 	render() {
-		var variable = this.state.variable || {};
+		var variable = this.state.variable;
 		var errors = [];
     var password = this.state.password || '';
-		
+
     if(password){
       if(password.length < variable.lengths){
   			errors.push(<li>Password is not long enough.</li>);
