@@ -1,7 +1,6 @@
 'use strict';
 import React from 'react';
-import Actions from '../store/actions.js';
-// import VariableRow from './form/variables.js';
+import Variable from './form/variable.js';
 
 class PassForm extends React.Component{
 	constructor(props) {
@@ -9,25 +8,32 @@ class PassForm extends React.Component{
 		this.state = {
 			lengths: false,
 			letters: false,
-			specialChar: false,
+			specials: false,
 			numbers: false,
-			capLetters: false
+			capitals: false
 		}
 	}
 	change(e) {
-		var num = e.target.value, id = e.target.id, state = this.state;
-		state[id] = num
-		if(parseInt(num)){
-			Actions[id](num);
-			this.setState(state);
-		} else {
-			this.setState(state);
-		}
+		let id = e.target.id;
+		const { dispatch } = this.props;
+		dispatch({type:'SET_VARIABLE',variable: id})
 	}
-	change2(e) {
-		Actions[e.target.id](e.target.value);
+
+	rows() {
+		let types = [
+			{title:'Required Length',id:'lengths'},
+			{title:'Required Letter Count',id:'letters'},
+			{title:'Required Number Count',id:'numbers'},
+			{title:'Special Characters',id:'specials'},
+			{title:'Capital Letters',id:'capitals'}
+		]
+		types = types.map((data) =>
+			<Variable vars={data} key={data.id} change={::this.change}/>
+		)
+		return types;
 	}
-	render() {
+
+	render() {console.log(this.props.variables)
 		var errors = [];
 		var state = this.state;
 		for(var i in state){
@@ -37,39 +43,20 @@ class PassForm extends React.Component{
 			}
 		}
 		return (
-		<div className="main">
-			<table>
-				<thead>
-				<tr>
-					<th>Variable</th>
-					<th>Limit</th>
-				</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td>Required Length</td>
-					<td><input id="lengths" onChange={this.change} /></td>
-				</tr>
-				<tr>
-					<td>Required Letter Count</td>
-					<td><input id="letters" onChange={this.change} /></td>
-				</tr>
-				<tr>
-					<td>Required Number Count</td>
-					<td><input id="numbers" onChange={this.change} /></td>
-				</tr>
-				<tr>
-					<td>Special Characters</td>
-					<td><input id="specialChar" onChange={this.change2} /></td>
-				</tr>
-				<tr>
-					<td>Capital Letters</td>
-					<td><input id="capLetters" onChange={this.change} /></td>
-				</tr>
-				</tbody>
-			</table>
-		{errors}
-		</div>
+			<div className="main">
+				<table>
+					<thead>
+						<tr>
+							<th>Variable</th>
+							<th>Limit</th>
+						</tr>
+					</thead>
+					<tbody>
+						{::this.rows()}
+					</tbody>
+				</table>
+				{errors}
+			</div>
 		)
 	}
 }

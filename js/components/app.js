@@ -1,9 +1,6 @@
 'use strict';
-// var VariableStore = require('../store/variablestore.js');
-import Reflux from 'reflux';
 import React from 'react';
 
-// mixins: [Reflux.connect(VariableStore, 'variable')],
 class App extends React.Component{
 	constructor(props){
 		super(props)
@@ -26,9 +23,7 @@ class App extends React.Component{
 	}
 	change(e) {
 		var newpass = e.target.value;
-		this.setState({
-			password: newpass
-		})
+		this.setState({password: newpass});
 	}
 	render() {
 		var variable = this.state.variable;
@@ -63,7 +58,7 @@ class App extends React.Component{
 				<ul className="error">
 					{errors}
 				</ul>
-        <input id="password" value={variable.length} onChange={this.change} onKeyDown={this.press}/>
+        <input id="password" value={variable.length} onChange={::this.change} onKeyDown={this.press}/>
 			</div>
 		)
 	}
