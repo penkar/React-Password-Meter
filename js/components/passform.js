@@ -12,11 +12,28 @@ class PassForm extends React.Component{
 			numbers: false,
 			capitals: false
 		}
+		// return val.match(/[A-Z]/g).length
 	}
+
+	switchVal(variable, val) {
+		switch (variable) {
+			case 'lengths':
+			case 'letters':
+			case 'numbers':
+			case 'capitals':
+				return parseInt(val);
+			case 'specials':
+				return val.split('').filter( (v,p,self) => self.indexOf(v) == p )
+			default:
+				return false;
+		}
+	}
+
 	change(e) {
-		let id = e.target.id;
+		let variable = e.target.id;
+		let val = ::this.switchVal(variable, e.target.value)
 		const { dispatch } = this.props;
-		dispatch({type:'SET_VARIABLE',variable: id})
+		dispatch({type:'SET_VARIABLE', variable, val})
 	}
 
 	rows() {
@@ -33,7 +50,7 @@ class PassForm extends React.Component{
 		return types;
 	}
 
-	render() {console.log(this.props.variables)
+	render() {
 		var errors = [];
 		var state = this.state;
 		for(var i in state){
