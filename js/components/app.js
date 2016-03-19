@@ -1,67 +1,90 @@
 'use strict';
 import React from 'react';
+import { connect } from "react-redux";
 
 class App extends React.Component{
 	constructor(props){
 		super(props)
-		this.state = {
-			password:'',
-			variable: {
-				lengths: 0,
-				letters: 0,
-				numbers: 0,
-				specials: 0,
-				capitals: 0
-			}
-		}
+		this.state = {password:''}
 	}
-	press(e) {
-		e = e || window.event;
-		if (e.keyCode == 27) {
-		alert("Escape");
-		}
-	}
+
 	change(e) {
 		var newpass = e.target.value;
 		this.setState({password: newpass});
 	}
+
+	_lengths(password) {
+		console.log(password);
+		let variable = this.props.variables.lengths;
+		if(!variable || password.replace(/\s/g, '').length >= variable){
+			return null
+		}
+		return <li key="length">Your password needs to be atleast {variable} characters long.</li>
+	}
+
+	_letters(password) {
+		let variable = this.props.variables.letters;
+		if(!variable || password.replace(/\W/g, '').replace(/\d/g, '').length >= variable){
+			return null
+		}
+		return <li key="letters">Your password must contain atleast {variable} letters.</li>
+	}
+
+	_capitals(password) {
+		let variable = this.props.variables.capitals;
+		if(!variable || password.replace(/[^A-Z]/g, '').length >= variable){
+			return null
+		}
+		return <li key="capitals">Your password must contain atleast {variable} capital letters.</li>
+	}
+
+	_numbers(password) {
+		let variable = this.props.variables.numbers;
+		if(!variable || password.replace(/\D/g, '').length >= variable){
+			return null
+		}
+		return <li key="numbers">Your password must contain atleast {variable} numbers.</li>
+	}
+
+	_specials(password) {
+		let variable = this.props.variables.specials;
+		if(!variable){
+			return null
+		}
+		for(var i = 0; i < variable.length; i++){
+			let v = variable[i];
+			if(password.indexOf(v) === -1){return <li key="specials">Your password must contain the characters: {variable.join(' ')}.</li>;}
+		}
+		return null
+	}
+
+	_errors() {
+		let password = this.state.password
+		if(!password){
+			return null;
+		}
+		return [
+			::this._lengths(password),
+			::this._letters(password),
+			::this._capitals(password),
+			::this._numbers(password),
+			::this._specials(password)
+		]
+	}
+
 	render() {
-		var variable = this.state.variable;
-		var errors = [];
-    var password = this.state.password || '';
-
-    if(password){
-      if(password.length < variable.lengths){
-  			errors.push(<li>Password is not long enough.</li>);
-  		}
-  		if(password.match(/[a-zA-Z]/g).length < variable.letters){
-  			errors.push(<li>Password does not contain enough Letters.</li>)
-  		}
-      var numMatch = password.match(/\d/g) || [];
-  		if(numMatch.length < (variable.numbers || 0 )){
-  			errors.push(<li>Password does not contain enough numbers.</li>)
-  		}
-
-      var specials = variable.specials || '';
-      for(var j = 0; j < specials.length; j++){
-        var r = new RegExp(specials[j]);
-        if(password.search(r)=== -1){
-          errors.push(<li>Password is missing a {specials[j]}.</li>)
-        }
-      }
-  		if(password.match(/[a-zA-Z]/g).length < variable.capitals){
-  			errors.push(<li>Password does not have enough capital letters.</li>)
-  		}
-    }
 		return(
 			<div className="main">
+				<input onChange={::this.change} />
 				<ul className="error">
-					{errors}
+					{::this._errors()}
 				</ul>
-        <input id="password" value={variable.length} onChange={::this.change} onKeyDown={this.press}/>
 			</div>
 		)
 	}
 }
+var mapStateToProps = function(state){
+    return {variables:state.variables};
+};
 
-export default App;
+export default connect(mapStateToProps)(App);

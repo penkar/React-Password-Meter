@@ -38,11 +38,11 @@ class PassForm extends React.Component{
 
 	rows() {
 		let types = [
-			{title:'Required Length',id:'lengths'},
-			{title:'Required Letter Count',id:'letters'},
-			{title:'Required Number Count',id:'numbers'},
-			{title:'Special Characters',id:'specials'},
-			{title:'Capital Letters',id:'capitals'}
+			{title:'Required Length',id:'lengths', description: "Minimum amount of characters required."},
+			{title:'Required Letter Count',id:'letters', description: "Minimum amount of letters required."},
+			{title:'Required Number Count',id:'numbers', description: "Minimum amount of numbers required."},
+			{title:'Special Characters',id:'specials', description: "Special characters required in password."},
+			{title:'Capital Letters',id:'capitals', description: "Minimum amount of capital letters required."}
 		]
 		types = types.map((data) =>
 			<Variable vars={data} key={data.id} change={::this.change}/>
