@@ -7,7 +7,9 @@ class Header extends React.Component{
   }
   render() {
     return (
-      <div style={{backgroundColor:'gainsboro', marginBottom:'20px'}} id="header" className="clearfix">5 Paramater React Password Strength RegEx</div>
+      <div style={{backgroundColor:'gainsboro', marginBottom:'20px'}} id="header" className="clearfix">
+        5 Paramater React Password Strength RegEx
+      </div>
     )
   }
 }
