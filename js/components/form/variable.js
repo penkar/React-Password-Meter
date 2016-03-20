@@ -8,6 +8,7 @@ class Variable extends React.Component{
       <tr>
         <td>{vars.title}</td>
         <td><input id={vars.id} onChange={::this.props.change} /></td>
+        <td>{vars.description}</td>
       </tr>
     )
   }

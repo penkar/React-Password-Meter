@@ -14,7 +14,12 @@ class Body extends React.Component{
 			<div>
 				<Header />
 				<App />
-				<PassForm variables={this.props.variables} dispatch={this.props.dispatch}/>
+				<div className="pure-g">
+					<div className="pure-u-1-5"></div>
+					<div className="pure-u-3-5">
+						<PassForm variables={this.props.variables} dispatch={this.props.dispatch}/>
+					</div>
+				</div>
 			</div>
 		)
 	}

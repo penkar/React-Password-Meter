@@ -74,11 +74,16 @@ class App extends React.Component{
 
 	render() {
 		return(
-			<div className="main">
-				<input onChange={::this.change} />
-				<ul className="error">
-					{::this._errors()}
-				</ul>
+			<div className="pure-g">
+				<div className="pure-u-1-5">&nbsp;
+				</div>
+				<div className="pure-u-3-5 pure-form">
+					<input onChange={::this.change} style={{width:'100%'}}/>
+					<br/>
+					<ul className="error">
+						{::this._errors()}
+					</ul>
+				</div>
 			</div>
 		)
 	}

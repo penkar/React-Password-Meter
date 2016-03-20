@@ -39,9 +39,9 @@ class PassForm extends React.Component{
 	rows() {
 		let types = [
 			{title:'Required Length',id:'lengths', description: "Minimum amount of characters required."},
-			{title:'Required Letter Count',id:'letters', description: "Minimum amount of letters required."},
-			{title:'Required Number Count',id:'numbers', description: "Minimum amount of numbers required."},
-			{title:'Special Characters',id:'specials', description: "Special characters required in password."},
+			{title:'Letter Count',id:'letters', description: "Minimum amount of letters required."},
+			{title:'Number Count',id:'numbers', description: "Minimum amount of numbers required."},
+			{title:'Special Chars',id:'specials', description: "Special characters required in password."},
 			{title:'Capital Letters',id:'capitals', description: "Minimum amount of capital letters required."}
 		]
 		types = types.map((data) =>
@@ -60,12 +60,13 @@ class PassForm extends React.Component{
 			}
 		}
 		return (
-			<div className="main">
-				<table>
+			<div>
+				<table className="pure-table pure-form" style={{width:'100%'}}>
 					<thead>
 						<tr>
 							<th>Variable</th>
 							<th>Limit</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
