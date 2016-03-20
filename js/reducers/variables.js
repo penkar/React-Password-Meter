@@ -2,7 +2,7 @@ let origin = {
   lengths: 0,
   letters: 0,
   numbers: 0,
-  specials: 0,
+  specials: [],
   capitals: 0
 }
 

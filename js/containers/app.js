@@ -2,6 +2,7 @@ import React from 'react';
 import App from '../components/app.js';
 import PassForm from '../components/passform.js';
 import Header from '../components/header.js';
+import Template from '../components/template.js';
 import { connect } from 'react-redux';
 
 class Body extends React.Component{
@@ -20,6 +21,7 @@ class Body extends React.Component{
 						<PassForm variables={this.props.variables} dispatch={this.props.dispatch}/>
 					</div>
 				</div>
+				<Template />
 			</div>
 		)
 	}
