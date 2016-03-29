@@ -12,7 +12,6 @@ class PassForm extends React.Component{
 			numbers: false,
 			capitals: false
 		}
-		// return val.match(/[A-Z]/g).length
 	}
 
 	switchVal(variable, val) {
@@ -50,15 +49,19 @@ class PassForm extends React.Component{
 		return types;
 	}
 
-	render() {
-		var errors = [];
-		var state = this.state;
-		for(var i in state){
-			var disp = state[i];
+	_errors() {
+		let errors = [];
+		let state = this.state;
+		for(let i in state){
+			let disp = state[i];
 			if(disp){
 				errors.push(<div className="error">{i} should be an integer</div>)
 			}
 		}
+		return errors;
+	}
+
+	render() {
 		return (
 			<div>
 				<table className="pure-table pure-form" style={{width:'100%'}}>
@@ -73,7 +76,7 @@ class PassForm extends React.Component{
 						{::this.rows()}
 					</tbody>
 				</table>
-				{errors}
+				{::this._errors()}
 			</div>
 		)
 	}
