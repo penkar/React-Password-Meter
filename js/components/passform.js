@@ -15,11 +15,17 @@ class PassForm extends React.Component{
 	}
 
 	switchVal(variable, val) {
+		let newval = parseInt(val);
 		switch (variable) {
 			case 'lengths':
 			case 'letters':
 			case 'numbers':
 			case 'capitals':
+				if(newval != val){
+					this.setState({[variable]:true});
+				} else {
+					this.setState({[variable]:false});
+				}
 				return parseInt(val);
 			case 'specials':
 				return val.split('').filter( (v,p,self) => self.indexOf(v) == p )
