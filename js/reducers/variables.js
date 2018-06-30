@@ -1,9 +1,9 @@
 let origin = {
-  lengths: 0,
-  letters: 0,
-  numbers: 0,
-  specials: [],
-  capitals: 0
+  lengths:0,
+  letters:0,
+  numbers:0,
+  specials:[],
+  capitals:0
 }
 
 const variables = (state = origin, action) => {

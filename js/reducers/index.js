@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
 import variables from './variables'
-
 export const variableApp = combineReducers({
-  variables
-})
-
+  variables,
+});
 export default variableApp
