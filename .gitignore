@@ -1,3 +1,2 @@
 /node_modules/
-/js/bundle.js
-/js/npm-debug.log
+/dist/
