@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 class App extends React.Component{
 	constructor(props){
@@ -79,8 +78,4 @@ class App extends React.Component{
 		</div>
 	)
 }
-const mapStateToProps = (state) => ({
-  variables:state.variables,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

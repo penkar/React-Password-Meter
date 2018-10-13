@@ -1,6 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux'
-
 class Template extends React.Component{
   constructor(props) {
     super(props);
@@ -143,9 +141,4 @@ class Template extends React.Component{
     return null;
   }
 }
-
-var mapStateToProps = function(state){
-    return {variables:state.variables};
-};
-
-export default connect(mapStateToProps)(Template);
+export default Template;
